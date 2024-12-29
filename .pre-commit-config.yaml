@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: no-push-to-master
+        name: Prevent pushes to master
+        entry: bash -c "if [ $(git rev-parse --abbrev-ref HEAD) = 'master' ]; then echo 'Pushes to master are not allowed'; exit 1; fi"
+        language: system
+        stages: [pre-push]
